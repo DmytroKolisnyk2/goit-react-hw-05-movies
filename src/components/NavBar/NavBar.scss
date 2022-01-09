@@ -1,0 +1,24 @@
+.menu__link {
+  font-size: 22px;
+  color: #000;
+  transition: 200ms linear;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  &--active {
+    color: tomato;
+    border-bottom: 2px solid tomato;
+  }
+}
+.header__menu {
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.header {
+  border-bottom: 1px solid #9b9b9b98;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 10px;
+}

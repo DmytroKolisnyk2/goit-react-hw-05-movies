@@ -1,0 +1,18 @@
+.cast__image{
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+.cast{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.cast__name{
+  margin: 10px 0 30px;
+}
+.cast__wrapper{
+  margin: 5px;
+}
