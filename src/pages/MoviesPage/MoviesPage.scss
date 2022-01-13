@@ -27,7 +27,18 @@
     transform: scale(1.1);
   }
 }
-.movies{
-    max-width: 1300px;
+.movies {
+  max-width: 1300px;
   margin: 0 auto;
+}
+.trending__link {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 7px;
+  display: inline-block;
+  transition: 200ms linear;
+  &:hover {
+    color: tomato;
+  }
 }

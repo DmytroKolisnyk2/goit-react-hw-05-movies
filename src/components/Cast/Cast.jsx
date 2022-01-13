@@ -25,7 +25,7 @@ export default function Cast() {
   return (
     <section className="cast">
       {isLoading && <Loader />}
-      {error && <h2>{error}</h2>}
+      {error && !isLoading && <h2>{error}</h2>}
       {castData.length === 0 && <h2>We will add cast soon</h2>}
       {!error &&
         castData.length > 0 &&
