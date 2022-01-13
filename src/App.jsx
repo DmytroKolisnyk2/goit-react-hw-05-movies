@@ -4,8 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import NotFound from "./pages/NotFound/NotFound";
 import "material-design-icons/iconfont/material-icons.css";
 import ScrollTopArrow from "./components/ScrollTopArrow/ScrollTopArrow";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Oval } from "react-loader-spinner";
+import Loader from "./components/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage" /* webpackChunkName: 'Home' */));
 const MoviesPage = lazy(() =>
@@ -24,9 +23,8 @@ class App extends Component {
     return (
       <>
         <NavBar />
-        <Suspense
-          fallback={<Oval heigth="100" width="100" color="tomato" arialLabel="Loading..." />}
-        >
+        <Loader />
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movies/" element={<MoviesPage />} />
