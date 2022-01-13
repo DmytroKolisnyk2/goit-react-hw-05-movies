@@ -25,7 +25,7 @@
   &:hover {
     color: tomato;
   }
-  &--active{
+  &--active {
     text-decoration: underline;
     color: tomato;
   }
@@ -34,4 +34,16 @@
 }
 .movie__text-wrapper {
   margin-left: 20px;
+}
+.movies__btn {
+  background-color: tomato;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 200ms linear;
+  &:active {
+    transform: scale(1.1);
+  }
 }
