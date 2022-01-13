@@ -23,7 +23,6 @@ class App extends Component {
     return (
       <>
         <NavBar />
-        <Loader />
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
