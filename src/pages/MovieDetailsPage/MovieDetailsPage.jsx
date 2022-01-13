@@ -3,29 +3,32 @@ import { NavLink, useParams, useNavigate, Outlet } from "react-router-dom";
 import "./MovieDetailsPage.scss";
 import { pageRequest } from "../../services/moviesRequest";
 import defaultImage from "../../images/no-photo.png";
+import Loader from "../../components/Loader/Loader";
 
 export default function MovieDetailsPage() {
   const [movieData, setMovieData] = useState(null);
   const [error, setError] = useState("");
   const movieId = useParams().movieId;
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(
-    () =>
-      pageRequest(movieId)
-        .then(({ data }) => {
-          setMovieData(data);
-          setError("");
-        })
-        .catch((error) => setError("Opps, something went wrong")),
-    [movieId]
-  );
+  useEffect(() => {
+    setIsLoading(true);
+    pageRequest(movieId)
+      .then(({ data }) => {
+        setMovieData(data);
+        setError("");
+      })
+      .catch((error) => setError("Opps, something went wrong"))
+      .finally(() => setIsLoading(false));
+  }, [movieId]);
 
   return (
     <section className="movie">
       <button onClick={() => navigate(-1)} className="movie__button movies__btn" type="button">
         {"<- Go back"}
       </button>
+      {isLoading && <Loader />}
       {error && <h2>{error}</h2>}
       {!error && movieData && (
         <>

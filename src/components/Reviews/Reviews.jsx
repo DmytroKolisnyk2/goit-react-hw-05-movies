@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { reviewsRequest } from "../../services/moviesRequest";
 import { useParams } from "react-router-dom";
-import './Reviews.scss'
+import "./Reviews.scss";
+import Loader from "../Loader/Loader";
 
 export default function Reviews() {
   const movieId = useParams().movieId;
   const [reviewsData, setReviewsData] = useState([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     reviewsRequest(movieId)
       .then(({ data }) => {
         setReviewsData(data.results);
         setError("");
       })
-      .catch((error) => setError("Opps, something went wrong"));
+      .catch((error) => setError("Opps, something went wrong"))
+      .finally(() => setIsLoading(false));
   }, [movieId]);
 
   return (
     <section className="reviews">
+      {isLoading && <Loader />}
       {error && <h2>{error}</h2>}
       {reviewsData.length === 0 && <h2>No reviews yet</h2>}
       {!error &&
