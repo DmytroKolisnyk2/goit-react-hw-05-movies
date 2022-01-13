@@ -15,7 +15,6 @@ export default function Cast() {
       .then(({ data }) => {
         setCastData(data.cast);
         setError("");
-        console.log(data.cast);
       })
       .catch((error) => setError("Opps, something went wrong"));
   }, [movieId]);

@@ -1,29 +1,42 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
-import MoviesPage from "./pages/MoviesPage/MoviesPage";
-import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
 import NavBar from "./components/NavBar/NavBar";
 import NotFound from "./pages/NotFound/NotFound";
-import Cast from "./components/Cast/Cast";
-import Reviews from "./components/Reviews/Reviews";
 import "material-design-icons/iconfont/material-icons.css";
-import ScrollTopArrow  from "./components/ScrollTopArrow/ScrollTopArrow";
+import ScrollTopArrow from "./components/ScrollTopArrow/ScrollTopArrow";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { Oval } from "react-loader-spinner";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage" /* webpackChunkName: 'Home' */));
+const MoviesPage = lazy(() =>
+  import("./pages/MoviesPage/MoviesPage" /* webpackChunkName: 'Movies' */)
+);
+const MovieDetailsPage = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: 'MovieDetails' */)
+);
+const Reviews = lazy(() =>
+  import("./components/Reviews/Reviews" /* webpackChunkName: 'Reviews' */)
+);
+const Cast = lazy(() => import("./components/Cast/Cast" /* webpackChunkName: 'Cast' */));
 
 class App extends Component {
   render() {
     return (
       <>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies/" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast/" element={<Cast />} />
-            <Route path="reviews/" element={<Reviews />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense
+          fallback={<Oval heigth="100" width="100" color="tomato" arialLabel="Loading..." />}
+        >
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/movies/" element={<MoviesPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast/" element={<Cast />} />
+              <Route path="reviews/" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
         <ScrollTopArrow bgColor="tomato" />
       </>
     );

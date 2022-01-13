@@ -13,7 +13,6 @@ export default function Reviews() {
       .then(({ data }) => {
         setReviewsData(data.results);
         setError("");
-        console.log(data.results);
       })
       .catch((error) => setError("Opps, something went wrong"));
   }, [movieId]);

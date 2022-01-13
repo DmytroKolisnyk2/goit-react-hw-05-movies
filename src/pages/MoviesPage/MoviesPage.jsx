@@ -14,7 +14,11 @@ class MoviesPage extends Component {
   handleOnSubmit = (event) => {
     event.preventDefault();
     queryRequest(this.state.inputValue)
-      .then(({ data }) => this.setState({ error: "", filmsData: data.results }))
+      .then(({ data }) =>
+        data.results.length === 0
+          ? this.setState({ error: "No films found", filmsData: data.results })
+          : this.setState({ error: "", filmsData: data.results })
+      )
       .catch(() => this.setState({ error: "Opps, something went wrong" }));
   };
   render() {
