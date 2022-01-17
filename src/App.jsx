@@ -1,8 +1,11 @@
 import React, { Component, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
-import NotFound from "./pages/NotFound/NotFound";
+
 import "material-design-icons/iconfont/material-icons.css";
+
+import NotFound from "./pages/NotFound/NotFound";
+
+import NavBar from "./components/NavBar/NavBar";
 import ScrollTopArrow from "./components/ScrollTopArrow/ScrollTopArrow";
 import Cast from "./components/Cast/Cast";
 import Reviews from "./components/Reviews/Reviews";
