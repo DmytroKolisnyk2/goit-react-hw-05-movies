@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { home, movies } from "../../services/routes.json";
 import "./NavBar.scss";
 
 export default function NavBar() {
@@ -7,13 +8,13 @@ export default function NavBar() {
     <header className="header">
       <nav className="header__menu">
         <NavLink
-          to="/"
+          to={home}
           className={({ isActive }) => (isActive ? "menu__link menu__link--active" : "menu__link")}
         >
           Home
         </NavLink>
         <NavLink
-          to="/movies"
+          to={movies}
           className={({ isActive }) => (isActive ? "menu__link menu__link--active" : "menu__link")}
         >
           Movies

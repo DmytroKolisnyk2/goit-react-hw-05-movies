@@ -1,0 +1,16 @@
+.trending {
+  list-style: none;
+}
+.trending__item {
+}
+.trending__link {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 7px;
+  display: inline-block;
+  transition: 200ms linear;
+  &:hover {
+    color: tomato;
+  }
+}

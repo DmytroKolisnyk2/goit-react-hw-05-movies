@@ -1,5 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
+import path from "./services/routes.json";
 
 import "material-design-icons/iconfont/material-icons.css";
 
@@ -24,15 +25,15 @@ class App extends Component {
     return (
       <>
         <NavBar />
-        <Suspense fallback={<LoaderModal/>}>
+        <Suspense fallback={<LoaderModal />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/movies/" element={<MoviesPage />} />
-            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-              <Route path="cast/" element={<Cast />} />
-              <Route path="reviews/" element={<Reviews />} />
+            <Route path={path.home} element={<HomePage />} />
+            <Route path={path.movies} element={<MoviesPage />} />
+            <Route path={path.moviesDetails} element={<MovieDetailsPage />}>
+              <Route path={path.cast} element={<Cast />} />
+              <Route path={path.reviews} element={<Reviews />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route path={path.notFound} element={<NotFound />} />
           </Routes>
         </Suspense>
         <ScrollTopArrow bgColor="tomato" />

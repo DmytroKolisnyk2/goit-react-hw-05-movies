@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./MoviesPage.scss";
-import { Link } from "react-router-dom";
 import { queryRequest } from "../../services/moviesRequest";
+
 import Loader from "..//../components/Loader/Loader";
+import FilmList from "../../components/FilmList/FilmList";
 
 class MoviesPage extends Component {
   state = {
@@ -23,7 +24,7 @@ class MoviesPage extends Component {
           : this.setState({ error: "", filmsData: data.results })
       )
       .catch(() => this.setState({ error: "Opps, something went wrong" }))
-      .finally(() => this.setState({ isLoading: false}));
+      .finally(() => this.setState({ isLoading: false }));
   };
   render() {
     return (
@@ -41,17 +42,7 @@ class MoviesPage extends Component {
         </form>
         {this.state.isLoading && <Loader />}
         {this.state.error && <h3>{this.state.error}</h3>}
-        <ul className="trending">
-          {this.state.filmsData.map((item) => (
-            <li key={item.id} className="trending__item">
-              {
-                <Link className="trending__link" to={`/movies/${item.id}`}>
-                  {item.title}
-                </Link>
-              }
-            </li>
-          ))}
-        </ul>
+        <FilmList listData={this.state.filmsData} />
       </section>
     );
   }
